@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="container-response">
+  <div id="response-video">
+    <img src="{{ url_for('predict_cam') }}" class="video-analyse">
+  </div>
+  <!-- <form method="POST">
+    <input type="hidden" value="stop" name="stop">
+    <input type="submit" name="stop">
+  </form>  --> 
+</div>
+
+{% endblock %}

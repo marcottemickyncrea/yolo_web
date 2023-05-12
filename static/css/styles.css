@@ -1,0 +1,286 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+html {
+    width: 100%;
+    display: flex;
+    justify-content: center;    
+    background-image: url('shattered.png');
+    background-color: black;
+    background-size: 150px;
+}
+
+.container-logo {
+    width: 100vw;
+    display: flex;
+    justify-content: flex-start;
+}
+
+h1 {
+    text-align: center;
+    text-shadow: 0 0 5px red;
+    font-size: 50px;
+    margin: 15px;
+}
+
+header {
+    background-image: url('shattered.png');
+    background-color: black;
+    background-size: 150px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav {
+    border-top: 2px solid red;
+    border-bottom: 2px solid red;
+}
+
+ul {
+    padding: 5px;
+    font-size: 25px;
+    font-weight: bold;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-shadow: 0px 0px 5px red;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    transition: 1s;
+}
+
+a:hover {
+    transition: 1s;
+    color: red
+}
+
+main {
+    width: 100%
+}
+
+#message {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: red;
+    text-shadow: 0 0 5px black;
+}
+
+#container-form {
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#formulaire {
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 2px black solid;
+    background-color: rgba(0, 0, 0, 0.493);
+}
+
+input[type='text'] {
+    width: 100%;
+}
+
+input[type='submit'] {
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 25px;
+    padding: 5px;
+}
+
+input[type='submit']:hover {
+    color: red;
+    background-color: black;
+}
+
+form {
+    width: 50%;
+    margin: 15px;
+    text-align: center;
+}
+
+#container-response {
+    width: 100%;
+    height: 80vh;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#response {
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    width: 90%;
+    height: 80%;
+    display: flex;
+    border: 2px black solid;
+    background-color: rgba(0, 0, 0, 0.493);
+}
+
+#response p {
+    color: black
+}
+
+.hidden {
+    display: none;
+}
+
+.hoverable:active + .hidden {
+    display: table-row;
+}
+
+.container-img-analyse {
+    border: 1px black solid;
+    background-color: black;
+    width: 70%;
+    padding: 5px;
+    margin: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.image-analyse {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#response-video {
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    min-width: 25%;
+    max-width: 85%;
+    min-height: 20%;
+    max-width: 60%;
+    display: flex;
+    justify-content: center;
+    border: 4px black solid;
+    background-color: rgba(0, 0, 0, 0.493);
+}
+
+.video-analyse {
+    width: 100%;
+    max-width: 100%;
+}
+
+.container-img-analyse p {
+    color: black;
+    position: absolute;
+    top: 80%;
+    margin: 15px;
+    background-color: whitesmoke;
+    border: 1px black solid;
+    text-align: center;
+}
+
+.container-table-imageRef{
+    width: 30%;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.container-table-imageRef div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    width: 100%;
+    border: 1px black solid;
+}
+
+table th, td {
+    border: 1px black solid;
+    margin: 5px;
+    width: 50%;
+    text-align: center;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: grey;
+}
+
+.image-ref {
+    max-width: 25%;
+    max-height: 25%;
+    align-self: center;
+}
+    
+#container-archives {
+    width: 100%;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;    
+}
+
+#archive p, table tr {
+    font-size: 15px;
+}
+
+#archive .container-img-analyse p{
+    top: 70%;
+}
+
+#archive {
+    color: white;
+    width: 450px;
+    margin: 15px 5px;
+    border: 2px black solid;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.493);   
+}
+
+#archive .image-ref {
+    min-width: 80%;
+}
+
+.container-ancre {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 15px;
+}
+
+.container-ancre a {
+    color: white
+}
+
+.container-ancre a:hover {
+    color: red
+}
+
+
+    
+

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="container-response">
+  <div id="response-video">
+    <img src="{{ url_for('predict_video') }}" class="video-analyse">
+  </div>
+</div>
+
+{% endblock %}

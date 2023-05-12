@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="container-response">
+  <div id="response">
+    <div class="container-img-analyse">
+      <img src="{{ url_for('static', filename= img_search.url_img.url_img_detect) }}" alt="" class="image-analyse">
+      <p>{{ img_search.phrase }}</p>
+    </div>
+    <div class="container-table-imageRef">
+      {% for key, label in img_search.resultat_predict.items() %}
+      <table>
+        <thead>
+          <tr>
+            <th>Label</th>
+            <th>{{ key }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in label %}
+          <tr class="hoverable">
+            <td class="hoverable">pourcentage</td>
+            <td class="hoverable">{{ i.pourcentage | round(2) }}</td>
+          </tr>
+          <tr class="hidden">
+            <td>
+              x_min <br>
+              y_min <br>
+              x_max <br>
+              y_maw <br>
+            </td>
+            <td>
+              {{ i.x_min | round(2) }} <br>
+              {{ i.y_min | round(2) }} <br>
+              {{ i.x_max | round(2) }} <br>
+              {{ i.y_max | round(2) }} <br>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endfor %}
+      <img src="{{img_search.url_img.url_img_analyse}}" alt="" class="image-ref">
+      <div>
+        <form action="{{ url_for('supprimer_image', id=img_search.id) }}" method="POST">
+          <input type="submit" value="Supprimer définitivement"></input>
+        </form>
+      </div>      
+    </div>
+  </div>
+</div>
+{% endblock %}

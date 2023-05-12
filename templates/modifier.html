@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="container-form">
+  <div id="formulaire">
+    <form action="{{ url_for('modifier_image', id=id) }}" method="POST">
+      <label for="img_texte">Texte modifié:</label>
+      <input type="text" id="img_texte" name="img_texte" required>
+      <br><br>
+      <input type="submit" value="Modifier le texte">
+    </form>
+  </div>
+</div>
+{% endblock %}

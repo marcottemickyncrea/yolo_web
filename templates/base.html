@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }} ">
+    <title>YOLO Fire Detection</title>
+</head>
+
+<body>
+    <header>
+        <div class="container-logo">
+            <h1>YOLO Fire Detection</h1>
+        </div>
+        <nav>
+            <ul>
+                <a href="{{ url_for('predict') }}">
+                    <li>Analyse Image/Video</li>
+                </a>
+                <a href="{{ url_for('accueil_cam') }}">
+                    <li>Analyse Webcam</li>
+                </a>
+                <a href="{{ url_for('archives') }}">
+                    <li>Archives</li>
+                </a>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+</body>
+
+</html>

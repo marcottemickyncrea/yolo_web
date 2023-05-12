@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="container-archives">
+  {% for archive in archives %}
+  <div id="archive">
+    <div class="container-img-analyse">
+      <img src="{{ url_for('static', filename= archive.url_img.url_img_detect) }}" alt="" class="image-analyse">
+      <p>{{ archive.phrase }}</p>
+    </div>
+    <div class="container-table-imageRef">
+      <table>
+        <thead>
+          <tr>
+            <th>Label(s)</th>
+            <th>Nombre</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for key, value in archive.resultat_predict.items() %}
+          <tr>
+            <td>{{ key }}</td>
+            <td>{{ value | length }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <img src="{{archive.url_img.url_img_analyse}}" alt="" class="image-ref">
+      <div class="container-ancre">
+        <a href="/supprimer/{{ archive.id }}">Supprimer l'image</a>
+        <a href="/modifier/{{ archive.id }}">Modifier l'image</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

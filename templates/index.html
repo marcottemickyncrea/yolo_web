@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if response %}
+<div id="container-response">
+  <div id="response">
+    <div class="container-img-analyse">
+      <img src="{{ url_for('static', filename= response.url_img.url_img_detect) }}" class="image-analyse">
+      <p>{{ response.phrase }}</p>
+    </div>
+    <div class="container-table-imageRef">
+      {% for key, label in response.resultat_predict.items() %}
+      <table>
+        <thead>
+          <tr>
+            <th>Label</th>
+            <th>{{ key }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in label %}
+          <tr class="hoverable">
+            <td class="hoverable">pourcentage</td>
+            <td class="hoverable">{{ i.pourcentage | round(2) }}</td>
+          </tr>
+          <tr class="hidden">
+            <td>
+              x_min <br>
+              y_min <br>
+              x_max <br>
+              y_maw <br>
+            </td>
+            <td>
+              {{ i.x_min | round(2) }} <br>
+              {{ i.y_min | round(2) }} <br>
+              {{ i.x_max | round(2) }} <br>
+              {{ i.y_max | round(2) }} <br>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endfor %}
+      <img src="{{response.url_img.url_img_analyse}}" class="image-ref">
+    </div>
+  </div>
+</div>
+{% else %}
+<div id="container-form">
+  <div id="formulaire">
+    <form method="POST">
+      <label for="img_url">URL:</label>
+      <input type="text" id="img_url" name="img_url" required>
+      <br><br>
+      <input type="submit" value="Lancer l'analyse">
+    </form>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <p id="message">{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+  </div>
+</div>
+{% endif %}
+{% endblock %}
