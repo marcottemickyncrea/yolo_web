@@ -6,24 +6,25 @@ from bson import json_util
 from my_utils import enregistrer_img, suppression_image, verif_format_img, pourcentages_positions_predict, ajout_cadres, phrase_labels
 from my_utils import verif_mp4, predict_video_cam
 
+# connection à la base de donnée en mongoDB
 CONNECTION_STRING = "mongodb://root:1234@localhost:27018/"
 client = MongoClient(CONNECTION_STRING)
-
 db = client['yolo']
 collection = db['labels']
-collection_video = db['labels_video']
 
 app = Flask(__name__)
 app.secret_key = '0000'
 
+# variable qui permet de transmettre l'url de l'endpoint index à celui de la lecture vidéo
 url_video = ''
 
-
+# acceuil
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/', methods=['GET', 'POST'])
+# gère la réception de l'url et redirige vers l'endpoint correspond en fonction du format
+@app.route('/', methods=['POST'])
 def predict():
     global url_video
 
@@ -69,6 +70,7 @@ def predict():
         else:
             return redirect('/')
 
+# affiche la vidéo en cours d'analyse
 @app.route('/video')
 def accueil_video():
     return render_template('video.html')
@@ -79,16 +81,10 @@ def predict_video():
     return Response(predictions,
         mimetype='multipart/x-mixed-replace; boundary=frame')               
 
-stop = ""            
-@app.route('/cam', methods=['GET', 'POST'])
-def accueil_cam():
-    global stop
-    if request.method == 'GET':
-        return render_template('cam.html')
-    elif request.method == 'POST':        
-        stop = request.form.get('stop')
-        print(stop)
-        return redirect('/')
+# affiche la webcam en cours d'analyse   
+@app.route('/cam')
+def accueil_cam():    
+    return render_template('cam.html')
 
 @app.route('/predict_cam')
 def predict_cam():     
@@ -96,6 +92,7 @@ def predict_cam():
                     mimetype='multipart/x-mixed-replace; boundary=frame')             
 
     
+# affichage des prédictions réalisées
 @app.route('/archives', methods=['GET'])
 def archives():
     if request.method == 'GET':
@@ -103,7 +100,8 @@ def archives():
         archives= [doc for doc in archives]
 
         return render_template('archives.html', archives= archives)
-    
+
+# suppression d'une prédiction par son id
 @app.route('/supprimer/<int:id>', methods=['GET', 'POST'])
 def supprimer_image(id):
     if request.method == 'GET':
@@ -121,6 +119,7 @@ def supprimer_image(id):
 
         return redirect('/')
 
+# modification de la phrase associée à une prédiction grâce à son id
 @app.route('/modifier/<int:id>', methods=['GET', 'POST'])
 def modifier_image(id):
     if request.method == 'GET':

@@ -32,7 +32,6 @@ def verif_format_img(url_img):
     # Affichage des URLs d'images trouvées
     return resultats
 
-
 def verif_mp4(url):
     """vérifie le format de la vidéo"""
     bool = False
@@ -50,7 +49,8 @@ def phrase_labels(phrase):
             if phrase.find('Pompier') != -1:
                 response = "Incendie en cours, les pompiers sont déjà à l'oeuvre !"
             else:
-                response = "Incendie en cours, arrête de filmer et appelle les pompier !"
+                # response = "Incendie en cours, arrête de filmer et appelle les pompier !"
+                response = 'INCENDIE en cours !'
         elif phrase.find('Clope') != -1:
             response = "Cloper tue !!!!"
         elif phrase.find('Poele') != -1:
@@ -60,12 +60,14 @@ def phrase_labels(phrase):
         elif phrase.find('Pompier') != -1:
             response = "Incendie en cours, les pompiers sont déjà à l'oeuvre !"
         else:
-            response = "Il y a le feu, oui, mais ça peut manquer de contexte !"
+            # response = "Il y a le feu, oui, mais ça peut manquer de contexte !"
+            response = 'Feu détecté !'
     elif phrase.find('Fumee') != -1:
         if phrase.find('Pompier') != -1:
             response = 'Incendie maitrisé, merci aux pompiers'
         else:
-            response = 'Il y a pas de fumée sans feu !'
+            # response = 'Il y a pas de fumée sans feu !'
+            response = 'Fumée détectée !'
     elif phrase.find('Clope') != -1:
         response = "Présence d'un serial killer dans cette image !"
     elif phrase.find('Bougie') != -1:
@@ -75,7 +77,8 @@ def phrase_labels(phrase):
     elif phrase.find('Pompier') != -1:
         response = "Merci aux pompiers !"
     else:
-        response = "Pas de feu, pas de feu !"
+        # response = "Pas de feu, pas de feu !"
+        response = 'Rien à signaler !'
 
     return response
 
@@ -211,7 +214,7 @@ def predict_video_cam(url, collection):
         frame_count += 1
 
         # Accélérer la vidéo en sautant certaines frames
-        if frame_count % acceleration_factor != 0:
+        if frame_count % acceleration_factor != 10:
             continue
 
         # Effectuer les prédictions avec votre modèle YOLO sur la frame
@@ -281,6 +284,7 @@ def predict_video_cam(url, collection):
         # Envoyer la frame à la réponse de l'API
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame_buffer + b'\r\n\r\n')
+    
 
 # ancienne version pour faire les prédictions => prenait beaucoup de temps, pas possible pour  vidéo
 # def pourcentages_positions_predict(img_path, id):
