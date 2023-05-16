@@ -1,7 +1,7 @@
 # Application de détection d'incendie **YOLO Fire Detection**
 
 ## Onglet Analyse Image/Video
-Cette onglet de lancer l'analyse d'image du web et les vidéos en formats MP4 contenu sur l'ordinateur de l'utilisateur.
+Cette onglet permet de lancer l'analyse d'image du web et les vidéos en format MP4 contenu sur l'ordinateur de l'utilisateur.
 Dans le cas des images, un tableau récapitulatif indique les différents labels détectés. En cliquant sur une ligne, cela affiche les coordonnées du cadre correspondant.
 Dans le cas d'une vidéo, les prédictions apparaissent sur l'image. Une fois la vidéo terminée ou stoppée avant, l'image correspondant au meilleur score est conservée.
 Dans le cas où les formats n'est pas pris en compte, un message d'erreur apparait.
