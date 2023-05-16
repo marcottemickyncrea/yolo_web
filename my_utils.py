@@ -214,7 +214,7 @@ def predict_video_cam(url, collection):
         frame_count += 1
 
         # Accélérer la vidéo en sautant certaines frames
-        if frame_count % acceleration_factor != 10:
+        if frame_count % acceleration_factor != 0:
             continue
 
         # Effectuer les prédictions avec votre modèle YOLO sur la frame
